@@ -63,5 +63,5 @@ To use the HTTP client, follow these steps:
 
 This repository contains the following branches:
 
-- **`task_10`**: A branch related to task 10 (specific details may vary).
+- **`task_10`**: Implementation of Task 10, which processes the response from an HTTP GET request and logs relevant information.
 - **`task_11`**: A branch related to task 11 (specific details may vary).
