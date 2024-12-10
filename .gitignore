@@ -256,4 +256,8 @@ dist
 # SvelteKit build / generate output
 .svelte-kit
 
+package-lock.json
+names.txt
+http-server.js
+
 # End of https://www.toptal.com/developers/gitignore/api/node,intellij

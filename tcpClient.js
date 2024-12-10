@@ -19,7 +19,7 @@ export function createTcpClient(host, port, callbacks = {}) {
         if (callbacks.onConnect) {
             callbacks.onConnect();
         } else {
-            console.log(`Connected to server: ${host}:${port}`);
+            console.log(`\x1b[32mConnected to server: ${host}:${port}\x1b[0m`);
         }
     });
 
@@ -33,7 +33,7 @@ export function createTcpClient(host, port, callbacks = {}) {
         if (callbacks.onEnd) {
             callbacks.onEnd();
         } else {
-            console.log('Connection ended by server.');
+            console.log('\x1b[33mConnection ended by server.\x1b[0m');
         }
     });
 
@@ -41,7 +41,7 @@ export function createTcpClient(host, port, callbacks = {}) {
         if (callbacks.onError) {
             callbacks.onError(err);
         } else {
-            console.error(`TCP Client Error: ${err.message}`);
+            console.error(`\x1b[31mTCP Client Error: ${err.message}\x1b[0m`);
         }
     });
 

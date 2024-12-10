@@ -1,5 +1,5 @@
-import { createTcpClient } from './tcpClient.js';
-import { parseHttpResponse } from './httpParser.js';
+import {createTcpClient} from './tcpClient.js';
+import {parseHttpResponse} from './httpParser.js';
 
 /**
  * Sends an HTTP request and processes the response using callbacks.
@@ -13,12 +13,12 @@ import { parseHttpResponse } from './httpParser.js';
  * @param {Object} [options.headers={}] - Additional HTTP headers.
  * @param {Function} callback - Function called with the parsed response or an error.
  */
-export function sendHttpRequest({ host, port, path = '/', method = 'GET', body = '', headers = {} }, callback) {
+export function sendHttpRequest({host, port, path = '/', method = 'GET', body = '', headers = {}}, callback) {
     let responseData = '';
 
     const client = createTcpClient(host, port, {
         onConnect: () => {
-            console.log(`Connected to server: ${host}:${port}`);
+            console.log(`\x1b[32mConnected to server: ${host}:${port}\x1b[0m`);
 
             // Default headers
             const defaultHeaders = {
@@ -28,7 +28,7 @@ export function sendHttpRequest({ host, port, path = '/', method = 'GET', body =
             };
 
             // Merge default and custom headers
-            const allHeaders = { ...defaultHeaders, ...headers };
+            const allHeaders = {...defaultHeaders, ...headers};
 
             // Construct the HTTP request
             const headerString = Object.entries(allHeaders)
@@ -43,18 +43,18 @@ export function sendHttpRequest({ host, port, path = '/', method = 'GET', body =
             responseData += data.toString();
         },
         onEnd: () => {
-            console.log('Response received. Processing...');
+            console.log('\x1b[34mResponse received. Processing...\x1b[0m`');
             try {
                 const parsedResponse = parseHttpResponse(responseData);
-                callback(null, parsedResponse); // Call the callback with the parsed response
+                if (callback) callback(null, parsedResponse); // Check if callback is defined
             } catch (error) {
-                callback(new Error(`Error processing response: ${error.message}`));
+                if (callback) callback(new Error(`Error processing response: ${error.message}`));
             }
 
             client.destroy(); // Close the client connection
         },
         onError: (err) => {
-            callback(new Error(`TCP Client Error: ${err.message}`));
+            if (callback) callback(new Error(`TCP Client Error: ${err.message}`));
         },
     });
 }

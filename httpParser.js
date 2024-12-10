@@ -3,6 +3,7 @@
  *
  * @param {string} response - The raw HTTP response string.
  * @returns {Object} - Parsed HTTP response components.
+ * @throws {Error} - If the HTTP status line is invalid.
  */
 export function parseHttpResponse(response) {
     // Split the response into headers and body

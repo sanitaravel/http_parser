@@ -65,3 +65,4 @@ This repository contains the following branches:
 
 - **`task_10`**: Implementation of Task 10, which processes the response from an HTTP GET request and logs relevant information.
 - **`task_11`**: Implementation of Task 11, which sends a POST request based on the path retrieved in Task 10 and logs the response.
+- **`master`**: The main branch containing the latest stable code.
